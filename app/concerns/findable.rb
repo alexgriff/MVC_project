@@ -2,12 +2,11 @@ module Findable
 
 
 def find_by_name(title)
-    all.find {|movie| movie.title == title}
+  self.all.find {|elem| elem.name == title}
 end
 
 def find_or_create_by_name(title)
-  movie = find_by_name(title)
-  movie ||= Movie.new(title)
+  find_by_name(title) || self.new(title)
 end
 
 end

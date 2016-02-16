@@ -2,10 +2,11 @@ require 'pry'
 module Populate
 
   # Examples:
-  # directors.genres = populate("genres", "directors")
-  # actors.directors = populate("director", "actors")
+  # caled on an instance of resource that is being added to a movie:
+  # director.genres = populate("genres", "directors")
+  # actor.directors = populate("director", "actors")
   #
-  # Note that if director is the resource it is singular, not plural
+  # Note that if director is the resource it is singular in, not plural
   # because a Movie-object has a .director method
   def populate(resource, current_class)
     self.movies.map do |title|
