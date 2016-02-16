@@ -27,7 +27,6 @@ module Searchable
 
 
   def find_and_delete(object, movie)
-    #
     object.movies.size > 1 ? object.movies.delete(movie) : self.all.delete(object)
   end
 
