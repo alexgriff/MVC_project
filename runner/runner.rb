@@ -28,7 +28,7 @@ until resource == 'exit' || action == 'exit'
           if movie.nil?
             puts "\"#{title}\" could not be found in our database. Try 'index' to see what movies we have."
           else
-            movie.print_movie
+            movie.print
           end
 
         when "destroy"
@@ -40,7 +40,7 @@ until resource == 'exit' || action == 'exit'
 
         when "index"
           puts "MOVIE DATABASE\n"
-          Movie.all.each { |movie| movie.print_movie}
+          Movie.all.each { |movie| movie.print}
         end
 
     when "director"
@@ -72,7 +72,7 @@ until resource == 'exit' || action == 'exit'
           if dir.nil?
             puts "#{name} could not be found in our database. Try 'index' to see what directors we have."
           else
-            dir.print_director
+            dir.print
           end
 
         when "destroy"
@@ -80,7 +80,7 @@ until resource == 'exit' || action == 'exit'
         
         when "index"
           puts "DIRECTOR DATABASE\n"
-          Director.all.each { |dir| dir.print_director}
+          Director.all.each { |dir| dir.print}
         end 
 
     when "actor"
@@ -112,7 +112,7 @@ until resource == 'exit' || action == 'exit'
           if actor.nil?
             puts "#{name} could not be found in our database. Try 'index' to see what actor we have."
           else
-            actor.print_actor
+            actor.print
           end
 
         when "destroy"
@@ -120,7 +120,7 @@ until resource == 'exit' || action == 'exit'
         
         when "index"
           puts "ACTOR DATABASE\n"
-          Actor.all.each { |actor| actor.print_actor}
+          Actor.all.each { |actor| actor.print}
         end 
     
     when "genre"
@@ -152,7 +152,7 @@ until resource == 'exit' || action == 'exit'
           if genre.nil?
             puts "#{name} could not be found in our database. Try 'index' to see what genres we have."
           else
-            genre.print_genre
+            genre.print
           end
 
         when "destroy"
@@ -160,7 +160,7 @@ until resource == 'exit' || action == 'exit'
         
         when "index"
           puts "GENRE DATABASE\n"
-          Genre.all.each { |genre| genre.print_genre}
+          Genre.all.each { |genre| genre.print}
         end 
   end
 
