@@ -32,12 +32,18 @@ until resource == 'exit' || action == 'exit'
           end
 
         when "destroy"
-          puts "whats the name of the movie you would like to destroy?"
+          puts "what is the name of the movie you want to erase from the database"
           name = gets.chomp
 
-          Movie.delete(name)
-          puts "All gone!"
+          movie = Movie.find_by_name(name)
+          if movie.nil?
+            puts "\"#{name}\" could not be found in our database"
+          else
+            movie.delete
+            puts "#{name} has been deleted"
+          end
 
+          
         when "index"
           puts "MOVIE DATABASE\n"
           Movie.all.each { |movie| movie.print}
@@ -76,8 +82,17 @@ until resource == 'exit' || action == 'exit'
           end
 
         when "destroy"
-          puts "...... not yet implemented....."
-        
+          puts "what is the name of the director you want to erase from the database and disassociate from all movies?"
+          name = gets.chomp
+
+          director = Director.find_by_name(name)
+          if director.nil?
+            puts "#{name} could not be found in our database"
+          else
+            director.delete
+            puts "#{name} has been deleted"
+          end
+
         when "index"
           puts "DIRECTOR DATABASE\n"
           Director.all.each { |dir| dir.print}
@@ -116,7 +131,16 @@ until resource == 'exit' || action == 'exit'
           end
 
         when "destroy"
-          puts "...... not yet implemented....."
+          puts "what is the name of the actor you want to erase from the database and disassociate from all movies?"
+          name = gets.chomp
+
+          actor = Actor.find_by_name(name)
+          if actor.nil?
+            puts "#{name} could not be found in our database"
+          else
+            actor.delete
+            puts "#{name} has been deleted"
+          end
         
         when "index"
           puts "ACTOR DATABASE\n"
@@ -156,7 +180,16 @@ until resource == 'exit' || action == 'exit'
           end
 
         when "destroy"
-          puts "...... not yet implemented....."
+          puts "what is the name of the genre you want to erase from the database and disassociate from all movies?"
+          name = gets.chomp
+
+          genre = Genre.find_by_name(name)
+          if genre.nil?
+            puts "#{name} could not be found in our database"
+          else
+            genre.delete
+            puts "#{name} has been deleted"
+          end
         
         when "index"
           puts "GENRE DATABASE\n"

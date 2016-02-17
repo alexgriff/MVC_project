@@ -2,11 +2,11 @@ require 'pry'
 
 class Movie
   extend Findable
-  extend Searchable
   include Printable
+  include Deletable
   
-  attr_accessor :rating
-  attr_reader :title, :actors, :genres, :director 
+  
+  attr_accessor :rating, :title, :actors, :genres, :director 
   @@all = []
 
   def initialize(title, rating = 5)
@@ -21,8 +21,8 @@ class Movie
     @@all
   end
 
-  def self.destroy_all
-    @@all.clear
+  def self.delete_by_name(name)
+    self.find_by_name
   end
 
 

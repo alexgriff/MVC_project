@@ -22,3 +22,8 @@ django.add_genre(drama)
 
 
 
+
+puts "k bye"
+
+
+

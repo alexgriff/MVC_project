@@ -4,6 +4,7 @@ class Genre
   extend Findable
   include Populate
   include Printable
+  include Deletable
 
   attr_accessor :name, :movies, :directors, :actors
   

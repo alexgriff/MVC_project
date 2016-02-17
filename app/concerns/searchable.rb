@@ -26,12 +26,25 @@ module Searchable
   # end
 
 
-  def find_and_delete(object, movie)
-    object.movies.size > 1 ? object.movies.delete(movie) : self.all.delete(object)
+  def find_and_delete(object, resource)
+    object.send(resource).size > 1 ? object.movies.delete(movie) : self.all.delete(object)
   end
 
-  def delete(title)
-    doomed_film = Movie.find_by_name(title)
+
+
+  def delete(name)
+    doomed = self.find_by_name(name)
+
+    if doomed
+      if doomed.respond_to?('movies')
+
+      end
+
+
+    else
+      puts "Can't delete something that doesn't exist"
+    end
+
     Director.find_and_delete(doomed_film.director, title)
     doomed_film.actors.each { |name| Actor.find_and_delete(name, title) }
     doomed_film.genres.each { |name| Genre.find_and_delete(name, title) }
