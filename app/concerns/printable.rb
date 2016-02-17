@@ -6,21 +6,25 @@ module Printable
     if self.respond_to?("title")
       print_title
     end
+    
     if self.respond_to?("rating")
       print_rating
     end
+    
     if self.respond_to?("name") && self.class != Movie
       print_name
     end
+    
     if self.respond_to?("movies")
       print_movies
     end
+    
     if self.respond_to?("director")
       print_director
-    end
-    if self.respond_to?("directors")
+    elsif self.respond_to?("directors")
       print_directors
     end
+    
     if self.respond_to?("actors")
       print_actors
     end
