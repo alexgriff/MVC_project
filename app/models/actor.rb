@@ -6,7 +6,8 @@ class Actor < InteractiveRecord
   include Printable
   include Deletable
 
-  attr_accessor :name, :movies, :genres, :directors
+  # attr_accessor :name, :movies, :genres, :directors
+  # attr_reader :id
 
   @@all=[]
 
@@ -14,12 +15,14 @@ class Actor < InteractiveRecord
     @@all
   end
 
-  def initialize(name)
+  def initialize(name:)
+    super
     @name = name
     @@all << self
     @movies = []
     @genres = []
     @directors = []
+    @id = nil
   end
 
   # SELECT id FROM movies WHERE title = ?;
@@ -30,8 +33,11 @@ class Actor < InteractiveRecord
   # VALUES (?,?);
   #
   # DB[:conn].execute(sql, id, self.id)
+
   def add_movie(title)
-    self.movies << title
+    # self.movies << title
+    movie = Movie.find_or_create_by(title: title)
+    movie.add_actor(self)
   end
 
 end
