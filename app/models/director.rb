@@ -22,6 +22,8 @@ class Director < InteractiveRecord
     @actors = []
   end
 
+  # INSERT INTO movies ()
+
   def add_movie(title)
     self.movies << title
   end
