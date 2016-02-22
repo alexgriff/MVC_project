@@ -1,6 +1,6 @@
 require 'pry'
 
-class Actor
+class Actor < InteractiveRecord
   extend Findable
   include Populate
   include Printable

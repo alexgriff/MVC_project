@@ -1,6 +1,6 @@
 require 'pry'
 
-class Movie
+class Movie < InteractiveRecord
   extend Findable
   include Printable
   include Deletable

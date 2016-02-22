@@ -1,6 +1,6 @@
 require 'pry'
 
-class Director 
+class Director < InteractiveRecord
   extend Findable
   include Populate
   include Printable

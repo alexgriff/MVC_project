@@ -1,6 +1,7 @@
 require 'pry'
 
-class Genre
+
+class Genre < InteractiveRecord
   extend Findable
   include Populate
   include Printable
@@ -13,6 +14,7 @@ class Genre
   def self.all
     @@all
   end
+
 
   def initialize(name)
     @name = name
