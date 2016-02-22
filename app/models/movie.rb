@@ -21,6 +21,26 @@ class Movie < InteractiveRecord
     @id = nil
   end
 
+  def actors
+    sql = <<-SQL
+      SELECT actors.name FROM actors
+      INNER JOIN movies_actors ON movies_actors.actor_id = actors.id
+      WHERE movies_actors.movie_id = ?
+    SQL
+    info_hashes = DB[:conn].execute(sql, self.id)
+    info_hashes.map { |row_hash| row_hash.values.first }
+  end
+
+  def genres
+    sql = <<-SQL
+      SELECT genres.name FROM genres
+      INNER JOIN movies_genres ON movies_genres.genre_id = genres.id
+      WHERE movies_genres.movie_id = ?
+    SQL
+    info_hashes = DB[:conn].execute(sql, self.id)
+    info_hashes.map { |row_hash| row_hash.values.first }
+  end
+
   def self.all
     @@all
   end
