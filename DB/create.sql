@@ -1,10 +1,10 @@
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY,
   title TEXT,
-  rating INTEGER,
+  -- rating INTEGER,
   director_id INTEGER
 );
- 
+
 CREATE TABLE genres (
   id INTEGER PRIMARY KEY,
   name TEXT
