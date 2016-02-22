@@ -32,4 +32,6 @@ django.add_actor(mindy)
 django.add_actor(anna)
 django.add_genre(drama)
 
+binding.pry
+
 puts "k bye"

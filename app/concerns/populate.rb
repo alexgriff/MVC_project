@@ -9,7 +9,7 @@ module Populate
       INNER JOIN movies ON movies.id = movies_genres.movie_id
       WHERE movies.director_id = ?
     SQL
-    id_hash = DB[:conn].execute(sql, director.id)
+    id_hash = DB[:conn].execute(sql, director.id).uniq
     id_nums = id_hash.map { |row_hash| row_hash.values.first }
     sql = <<-SQL
       INSERT INTO directors_genres (director_id,genre_id)
@@ -43,7 +43,7 @@ end
       INNER JOIN movies ON movies.id = movies_actors.movie_id
       WHERE movies.director_id = ?
     SQL
-    id_hash = DB[:conn].execute(sql, director.id)
+    id_hash = DB[:conn].execute(sql, director.id).uniq
     id_nums = id_hash.map { |row_hash| row_hash.values.first }
     sql = <<-SQL
       INSERT INTO actors_directors (director_id,actor_id)
@@ -58,7 +58,7 @@ end
       JOIN movies ON movies.id = movies_genres.movie_id
       WHERE movies_genres.movie_id = ?
     SQL
-    id_hash = DB[:conn].execute(sql, self.id)
+    id_hash = DB[:conn].execute(sql, self.id).uniq
     id_nums = id_hash.map { |row_hash| row_hash.values.first }
     sql = <<-SQL
       INSERT INTO actors_genres (actor_id, genre_id)
@@ -73,7 +73,7 @@ end
       JOIN movies ON movies.id = movies_actors.movie_id
       WHERE movies_actors.movie_id = ?
     SQL
-    id_hash = DB[:conn].execute(sql, self.id)
+    id_hash = DB[:conn].execute(sql, self.id).uniq
     id_nums = id_hash.map { |row_hash| row_hash.values.first }
     sql = <<-SQL
       INSERT INTO actors_genres (actor_id, genre_id)
