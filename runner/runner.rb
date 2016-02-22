@@ -1,7 +1,6 @@
 require_relative '../config/environment.rb'
 require_relative '../tools/seed.rb'
 
-binding.pry
 # Movie.find_or_create_by(title: "django")
 # Movie.find_or_create_by(title: "Hunger Games")
 

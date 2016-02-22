@@ -7,7 +7,8 @@ module Printable
       print_title
     end
     
-    if self.respond_to?("rating")
+    # for now just gives every movie 5 stars
+    if self.is_a? Movie
       print_rating
     end
     
@@ -45,7 +46,7 @@ module Printable
 
   def print_rating
     star_string = ""
-    self.rating.times do 
+    5.times do 
       star_string += ' * '
     end
     puts "Rating: #{star_string}"
@@ -66,7 +67,7 @@ module Printable
       director_name = "Unknown"
       puts "Director: #{director_name}"
     else
-      director_name = self.director.name
+      director_name = self.director
       puts "Director: #{director_name}"
     end
   end

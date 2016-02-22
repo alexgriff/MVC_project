@@ -1,15 +1,5 @@
 require 'pry'
 
-# django = Movie.new(title: "django")
-#
-# western = Genre.new(name: "western")
-# drama = Genre.new(name: "drama")
-#
-# quentin = Director.new(name: "quentin")
-#
-# jamie = Actor.new(name: "jamie foxx")
-# mindy = Actor.new(name: "Mindy")
-# anna = Actor.new(name: "Anna")
 
 django = Movie.create(title: "django")
 
