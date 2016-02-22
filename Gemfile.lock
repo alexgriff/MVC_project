@@ -27,6 +27,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     slop (3.6.0)
+    sqlite3 (1.3.11)
 
 PLATFORMS
   ruby
@@ -35,6 +36,7 @@ DEPENDENCIES
   pry-byebug
   require_all
   rspec
+  sqlite3
 
 BUNDLED WITH
    1.10.6
