@@ -25,11 +25,11 @@ anna = Actor.create(name: "Anna")
 
 
 django.add_actor(jamie)
-django.add_genre(western)
 django.add_director(quentin)
+django.add_genre(western)
 
-django.add_actor(mindy)
-django.add_actor(anna)
-django.add_genre(drama)
+# django.add_actor(mindy)
+# django.add_actor(anna)
+# django.add_genre(drama)
 
 puts "k bye"
