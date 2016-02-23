@@ -12,7 +12,7 @@ class Actor < InteractiveRecord
 
   def self.all
     rows = DB[:conn].execute("SELECT * FROM actors")
-    rows.map {|row| Genre.object_from_row(row)}
+    rows.map {|row| Actor.object_from_row(row)}
   end
 
   def initialize(attributes = {})

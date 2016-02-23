@@ -50,7 +50,6 @@ class InteractiveRecord
   end
 
   def self.object_from_row(row = {})
-    # binding.pry
     attrbs = row.reject { |key,val| key.is_a?(Integer) }
     id = attrbs["id"]
     self.new(attrbs).tap { |object| object.id = id }
