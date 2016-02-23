@@ -6,10 +6,10 @@ class Movie < InteractiveRecord
   include Deletable
   include Populate
 
-
-  # attr_accessor :rating, :title, :actors, :genres, :director
-  # attr_reader :id
-  @@all = []
+  def self.all
+    rows = DB[:conn].execute("SELECT * FROM movies")
+    rows.map {|row| Movie.object_from_row(row)}
+  end
 
   def initialize(attributes = {})
     super
@@ -17,7 +17,6 @@ class Movie < InteractiveRecord
     # @rating = rating
     @actors = []
     @genres = []
-    @@all << self
     @director_id = nil
     @id = nil
   end
@@ -48,11 +47,8 @@ class Movie < InteractiveRecord
       INNER JOIN movies ON movies.director_id = directors.id
       WHERE directors.id = ?
     SQL
+    binding.pry
      DB[:conn].execute(sql, self.director_id)[0][0]
-  end
-
-  def self.all
-    @@all
   end
 
   def self.delete_by_name(delete_name)
@@ -92,6 +88,8 @@ class Movie < InteractiveRecord
   def name
     @title
   end
+
+
 
   
 end

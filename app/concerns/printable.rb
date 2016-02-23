@@ -63,7 +63,7 @@ module Printable
   end
 
   def print_director
-    if self.director.nil?
+    if self.director_id.nil?
       director_name = "Unknown"
       puts "Director: #{director_name}"
     else

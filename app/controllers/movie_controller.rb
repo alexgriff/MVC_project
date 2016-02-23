@@ -6,11 +6,11 @@ class MovieController
     end
     
     def create_movie(title)
-        Movie.new(title)
+        Movie.create(title)
     end
     
-    def find_movie(title)
-        Movie.find_by_name(title)
+    def find_movie(mov_title)
+        Movie.find_by(title: mov_title)
     end
     
     def action_prompt

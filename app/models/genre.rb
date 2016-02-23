@@ -9,32 +9,22 @@ class Genre < InteractiveRecord
   # attr_accessor :name, :movies, :directors, :actors
   # attr_reader :id
 
-  @@all=[]
 
   def self.all
-    @@all
+    rows = DB[:conn].execute("SELECT * FROM genres")
+    rows.map {|row| Genre.object_from_row(row)}
   end
 
 
-  def initialize(name:)
+  def initialize(attributes = {})
     super
     @name = name
-    @@all << self
     @movies = []
     @directors = []
     @actors = []
     @id = nil
   end
 
-
-  # SELECT id FROM movies WHERE title = ?;
-  # id = DB[:conn].execute(sql, title)[0][0]
-  # **** what do you do if title is not found *****
-  #
-  # INSERT INTO movies_genres (movie_id, genre_id)
-  # VALUES (?,?);
-  #
-  # DB[:conn].execute(sql, id, self.id)
   def add_movie(title)
     # self.movies << title
     sql = <<-SQL

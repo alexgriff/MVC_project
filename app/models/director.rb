@@ -9,16 +9,15 @@ class Director < InteractiveRecord
   # attr_accessor :name, :movies, :genres, :actors
   # attr_reader :id
 
-  @@all=[]
 
   def self.all
-    @@all
+    rows = DB[:conn].execute("SELECT * FROM directors")
+    rows.map {|row| Genre.object_from_row(row)}
   end
 
-  def initialize(name: )
+  def initialize(attributes = {})
     super
     @name = name
-    @@all << self
     @movies = []
     @genres = []
     @actors = []
