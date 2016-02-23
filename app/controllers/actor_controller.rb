@@ -10,11 +10,11 @@ class ActorController
     end
     
     def create_actor(name)
-        Actor.new(name)
+        Actor.create(name)
     end
     
     def find_actor(name)
-        Actor.find_by_name(name)
+        Actor.find_by(name: name)
     end
     
     def show_actor_prompt
@@ -41,8 +41,8 @@ class ActorController
         view.render
     end
     
-    def associate_actor_with_movie(actor, title)
-        movie = Movie.find_or_create_by_name(title)
+    def associate_actor_with_movie(actor, mov_title)
+        movie = Movie.find_or_create_by(title: mov_title)
         movie.add_actor(actor)
     end
     

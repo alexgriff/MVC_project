@@ -11,11 +11,11 @@ class DirectorController
     end
     
     def create_director(name)
-        Director.new(name)
+        Director.create(name)
     end
     
     def find_director(name)
-        Director.find_by_name(name)
+        Director.find_by(name: name)
     end
     
     def show_director_prompt
@@ -42,8 +42,8 @@ class DirectorController
         view.render
     end
     
-    def associate_director_with_movie(director, title)
-        movie = Movie.find_or_create_by_name(title)
+    def associate_director_with_movie(director, mov_title)
+        movie = Movie.find_or_create_by(title: mov_title)
         movie.add_director(director)
     end
     

@@ -27,8 +27,7 @@ class Director < InteractiveRecord
       SELECT title FROM movies
       WHERE movies.director_id = ?
     SQL
-    info_hashes = DB[:conn].execute(sql, self.id)
-    binding.pry
+    info_hashes = DB[:conn].execute(sql, self.id).uniq
     info_hashes.map { |row_hash| row_hash.values.first }
   end
   
@@ -39,8 +38,7 @@ class Director < InteractiveRecord
       JOIN actors_directors on actors_directors.actor_id = actors.id
       WHERE actors_directors.director_id = ?
     SQL
-    info_hashes = DB[:conn].execute(sql, self.id)
-    binding.pry
+    info_hashes = DB[:conn].execute(sql, self.id).uniq
     info_hashes.map { |row_hash| row_hash.values.first }
   end
 
@@ -50,8 +48,7 @@ class Director < InteractiveRecord
       JOIN directors_genres on directors_genres.genre_id = genres.id
       WHERE directors_genres.director_id = ?
     SQL
-    info_hashes = DB[:conn].execute(sql, self.id)
-    binding.pry
+    info_hashes = DB[:conn].execute(sql, self.id).uniq
     info_hashes.map { |row_hash| row_hash.values.first }
   end
 

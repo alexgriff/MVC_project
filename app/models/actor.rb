@@ -55,7 +55,7 @@ def movies
    sql = <<-SQL
    SELECT genres.name FROM genres
    INNER JOIN actors_genres ON actors_genres.genre_id = genres.id
-   WHERE actors_genres.genre_id = ?
+   WHERE actors_genres.actor_id = ?
    SQL
    info_hashes = DB[:conn].execute(sql, self.id).uniq
    info_hashes.map { |row_hash| row_hash.values.first }
