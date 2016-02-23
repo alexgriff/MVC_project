@@ -86,7 +86,4 @@ class Movie < InteractiveRecord
     @title
   end
 
-
-
-  
 end

@@ -18,14 +18,13 @@ module Populate
     id_nums.each { |num| DB[:conn].execute(sql, director.id, num) }
   end
 
-def populate_directors_genres_from_add_genre(genre)
-    dir_id = self.director_id
-    if dir_id
-      sql = "INSERT INTO directors_genres (director_id, genre_id) VALUES (?, ?)"
-      DB[:conn].execute(sql, dir_id, self.id)
-    end
-end
-  
+  def populate_directors_genres_from_add_genre(genre)
+      dir_id = self.director_id
+      if dir_id
+        sql = "INSERT INTO directors_genres (director_id, genre_id) VALUES (?, ?)"
+        DB[:conn].execute(sql, dir_id, self.id)
+      end
+  end
 
   def populate_actors_directors_from_add_actor(actor)
     dir_id = self.director_id
@@ -81,8 +80,4 @@ end
     SQL
     id_nums.each { |num| DB[:conn].execute(sql, num, genre.id) }
   end
-
-
-
 end
-
