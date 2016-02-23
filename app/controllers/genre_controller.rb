@@ -11,11 +11,11 @@ class GenreController
     end
     
     def create_genre(name)
-        Genre.new(name)
+        Genre.create(name)
     end
     
     def find_genre(name)
-        Genre.find_by_name(name)
+        Genre.find_by(name: name)
     end
     
     def show_genre_prompt
@@ -43,7 +43,7 @@ class GenreController
     end
     
     def associate_genre_with_movie(genre, title)
-        movie = Movie.find_or_create_by_name(title)
+        movie = Movie.find_or_create_by(title: title)
         movie.add_genre(genre)
     end
     

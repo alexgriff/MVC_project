@@ -47,7 +47,6 @@ class Movie < InteractiveRecord
       INNER JOIN movies ON movies.director_id = directors.id
       WHERE directors.id = ?
     SQL
-    binding.pry
      DB[:conn].execute(sql, self.director_id)[0][0]
   end
 
@@ -68,7 +67,6 @@ class Movie < InteractiveRecord
       VALUES (?,?)
     SQL
     DB[:conn].execute(sql, self.id, actor.id)
-
     populate_actors_directors_from_add_actor(actor)
     populate_actors_genres_from_add_actor(actor)
   end
@@ -80,7 +78,6 @@ class Movie < InteractiveRecord
       VALUES (?,?)
     SQL
     DB[:conn].execute(sql, self.id, genre.id)
-
     populate_directors_genres_from_add_genre(genre)
     populate_actors_genres_from_add_genre(genre)
   end

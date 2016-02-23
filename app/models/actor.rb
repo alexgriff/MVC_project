@@ -12,7 +12,7 @@ class Actor < InteractiveRecord
 
   def self.all
     rows = DB[:conn].execute("SELECT * FROM actors")
-    rows.map {|row| Genre.object_from_row(row)}
+    rows.map {|row| Actor.object_from_row(row)}
   end
 
   def initialize(attributes = {})
@@ -24,19 +24,42 @@ class Actor < InteractiveRecord
     @id = nil
   end
 
-  # SELECT id FROM movies WHERE title = ?;
-  # id = DB[:conn].execute(sql, title)[0][0]
-  # **** what do you do if title is not found *****
-  #
-  # INSERT INTO movies_actors (movie_id, actor_id)
-  # VALUES (?,?);
-  #
-  # DB[:conn].execute(sql, id, self.id)
-
   def add_movie(title)
     # self.movies << title
     movie = Movie.find_or_create_by(title: title)
     movie.add_actor(self)
   end
+
+
+def movies
+   sql = <<-SQL
+     SELECT movies.title FROM movies
+     INNER JOIN movies_actors ON movies_actors.movie_id = movies.id
+     WHERE movies_actors.actor_id = ?
+   SQL
+   info_hashes = DB[:conn].execute(sql, self.id).uniq
+   info_hashes.map { |row_hash| row_hash.values.first }
+ end
+
+ def directors
+   sql = <<-SQL
+     SELECT directors.name FROM directors
+     INNER JOIN actors_directors ON actors_directors.director_id = directors.id
+     WHERE actors_directors.actor_id = ?
+   SQL
+   info_hashes = DB[:conn].execute(sql, self.id).uniq
+   info_hashes.map { |row_hash| row_hash.values.first }
+ end
+
+ def genres
+   sql = <<-SQL
+   SELECT genres.name FROM genres
+   INNER JOIN actors_genres ON actors_genres.genre_id = genres.id
+   WHERE actors_genres.genre_id = ?
+   SQL
+   info_hashes = DB[:conn].execute(sql, self.id).uniq
+   info_hashes.map { |row_hash| row_hash.values.first }
+ end
+
 
 end
